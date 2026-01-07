@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { styles } from './styles';
 
 // --- Placeholder Screens (we'll fill them later) ---
 function HomeScreen() {
@@ -16,6 +17,20 @@ function HomeScreen() {
       <Text style={styles.subtitle}>
         Fresh produce directly from local farmers
       </Text>
+
+      <Text style={styles.sectionTitle}>Available Nearby</Text>
+
+      <FlatList 
+        data={fakeProducts}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <View style={styles.productCard}>
+
+          </View>
+        )}
+      />
+
+      
     </View>
   );
 }
@@ -101,46 +116,3 @@ export default function App() {
   );
 }
 
-// --- Basic styles ---
-const styles = StyleSheet.create({
-  screenContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f0f7f0', // light green background
-  },
-  screenTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#2e7d32', // darker green
-  },
-
-  homeContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f5f9f5',
-    padding: 20,
-  },
-  icon: {
-    marginBottom: 20,
-  },
-  welcomeTitle: {
-    fontSize: 28,
-    color: '#4CAF50',
-    fontWeight: '500',
-  },
-  appName: {
-    fontSize: 36,
-    fontWeight: 'bold',
-    color: '#2e7d32',
-    marginBottom: 10,
-  },
-
-  subtitle: {
-    fontSize: 18,
-    color: '#555',
-    textAlign: 'center',
-    marginTop: 10,
-  },
-});
