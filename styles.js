@@ -102,5 +102,15 @@ export const styles = StyleSheet.create({
 
     messageButton: {
         backgroundColor: '#4CAF50',
-    }
+        paddingVertical: 10,
+        paddingHorizontal: 16,
+        borderRadius: 20,
+        alignSelf: 'flex-start',
+        marginTop: 8,
+    },
+    messageButtonText: {
+        color: 'white',
+        fontSize: 14,
+        fontWeight: '600',
+    },
 });
