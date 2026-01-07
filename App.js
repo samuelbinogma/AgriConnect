@@ -80,6 +80,16 @@ function HomeScreen() {
         contentContainerStyle={{ paddingBottom: 30}} 
       />
 
+      {/* Floating action button for farmers only */}
+      {isFarmer && (
+        <TouchableOpacity
+          style={styles.fab}
+          onPress={() => alert("Add new Product")}
+        >
+          <Ionicons name="add" size={32} color="white" />
+        </TouchableOpacity>
+      )}
+
     </View>
   );
 }
