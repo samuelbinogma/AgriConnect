@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
 
     icon: {
         marginBottom: 20,
+        marginTop: 20,
     },
 
     welcomeTitle: {
@@ -46,5 +47,60 @@ export const styles = StyleSheet.create({
         marginBottom: 10,
         alignSelf: 'flex-start',
         paddingHorizontal: 20
+    },
+
+    // Product Card Styles
+    productCard: {
+        flexDirection: 'row',
+        backgroundColor: 'white',
+        borderRadius: 16,
+        marginHorizontal: 16,
+        marginVertical: 8,
+        padding: 12,
+        borderWidth: 1,
+        borderColor: '#e8f5e9',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2},
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
+    },
+    photoPlaceholder: {
+        width: 100,
+        height: 100,
+        backgroundColor: '#e0f2e9',
+        borderRadius: 8,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 12,
+    },
+    photoText: {
+        fontSize: 12,
+        color: '#4CAF50',
+        textAlign: 'center',
+    },
+    productInfo: {
+        flex: 1,
+        justifyContent: 'center',
+    },
+    productName: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#1b5e20',
+        marginBottom: 4,
+    },
+    productPrice: {
+        fontSize: 16,
+        color: '#2e7d32',
+        marginTop: 4,
+    },
+    productFarmer: {
+        fontSize: 14,
+        color: '#666',
+        marginTop: 4,
+    },
+
+    messageButton: {
+        backgroundColor: '#4CAF50',
     }
-})
+});

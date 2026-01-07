@@ -1,9 +1,41 @@
 import { StatusBar } from 'expo-status-bar';
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { styles } from './styles';
+
+const fakeProducts = [
+  {
+    id: '1',
+    name: 'Fresh Tomatoes',
+    price: '$4',
+    unit: 'kg',
+    farmer: 'Sunrise Farm'
+  },
+  {
+    id: '2',
+    name: 'Organic Potatoes',
+    price: '$5',
+    unit: 'kg',
+    farmer: 'Green Valley'
+  },
+  {
+    id: '3',
+    name: 'Red Onions',
+    price: '$3.5',
+    unit: 'kg',
+    farmer: 'River Side Farm'
+  },
+  {
+    id: '4',
+    name: 'Fresh Carrots',
+    price: '$2.5',
+    unit: 'kg',
+    farmer: 'Believe Fields'
+  },
+
+]
 
 // --- Placeholder Screens (we'll fill them later) ---
 function HomeScreen() {
@@ -25,12 +57,29 @@ function HomeScreen() {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <View style={styles.productCard}>
+            <View style={styles.photoPlaceholder}>
+              <Text style={styles.photoText}>{item.name}</Text>
+            </View>
 
+            <View style={styles.productInfo}>
+              <Text style={styles.productName}>{item.name}</Text>
+              <Text style={styles.productPrice}>
+                {item.price} / {item.unit}
+              </Text>
+              <Text style={styles.productFarmer}>by {item.farmer}</Text>
+
+              <TouchableOpacity
+                style={styles.messageButton}
+                onPress={() => alert(`Message sent to ${item.farmer}`)}
+              >
+                <Text style={styles.messageButtonText}>Message Farmer</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         )}
+        contentContainerStyle={{ paddingBottom: 30}} 
       />
 
-      
     </View>
   );
 }
