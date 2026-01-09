@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { RoleSelectionStyle} from '../allStyles/RoleSelectionStyle'
+import { styles} from '../allStyles/RoleSelectionStyle'
 
 export default function RoleSelectionScreen({ navigation }) {
     return (
