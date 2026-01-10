@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { styles } from "../allStyles/loginStyle";
 
 export default function LoginScreen({ navigation }) {
     return (

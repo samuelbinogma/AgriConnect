@@ -1,9 +1,15 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import RoleSelectionScreen from './screens/RoleSelectScreen';
+import SignUpScreen from './screens/SignUpScreen';
+import LoginScreen from './screens/LoginScreen';
+
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { styles } from './styles';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const fakeProducts = [
   {
@@ -128,50 +134,47 @@ function ProfileScreen() {
 
 // --- Bottom Tab Navigator ---
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
-// Fake user role (later we'll make this changeable)
+
 const isFarmer = true; // change to false to see customer version
+
+function MainTabs() {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          if (route.name === 'Home') iconName = focused ? 'leaf' : 'leaf-outline';
+          else if (route.name === 'Explore') iconName = focused ? 'search' : 'search-outline';
+          else if (route.name === 'Messages') iconName = focused ? 'chatbubbles' : 'chatbubbles-outline';
+          else if (route.name === 'Dashboard') iconName = focused ? 'grid' : 'grid-outline';
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: '#4CAF50',
+        tabBarInactiveTintColor: 'gray',
+        tabBarStyle: { backgroundColor: '#f9f9f9' },
+        headerShown: false,
+      })}
+    >
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Explore" component={ExploreScreen} />
+      <Tab.Screen name="Messages" component={MessagesScreen} />
+      {isFarmer && <Tab.Screen name="Dashboard" component={DashboardScreen} />}
+    </Tab.Navigator>
+  );
+}
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
-
-            if (route.name === 'Home') {
-              iconName = focused ? 'leaf' : 'leaf-outline';
-            } else if (route.name === 'Explore') {
-              iconName = focused ? 'search' : 'search-outline';
-            } else if (route.name === 'Messages') {
-              iconName = focused ? 'chatbubbles' : 'chatbubbles-outline';
-            } else if (route.name === 'Dashboard') {
-              iconName = focused ? 'grid' : 'grid-outline';
-            } else if (route.name === 'Profile') {
-              iconName = focused ? 'person' : 'person-outline';
-            }
-
-            return <Ionicons name={iconName} size={size} color={color} />;
-          },
-          tabBarActiveTintColor: '#4CAF50',    // green
-          tabBarInactiveTintColor: 'gray',
-          tabBarStyle: { backgroundColor: '#f9f9f9' },
-          headerShown: false, // hide top header
-        })}
-      >
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Explore" component={ExploreScreen} />
-        <Tab.Screen name="Messages" component={MessagesScreen} />
-
-        {isFarmer ? (
-          <Tab.Screen name="Dashboard" component={DashboardScreen} />
-        ) : (
-          <Tab.Screen name="Profile" component={ProfileScreen} />
-        )}
-      </Tab.Navigator>
-      <StatusBar style="dark" />
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="RoleSelction" component={RoleSelectionScreen} />
+        <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Main" component={MainTabs} />
+      </Stack.Navigator>
     </NavigationContainer>
-  );
+  )
 }
 
